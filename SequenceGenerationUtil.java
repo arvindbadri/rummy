@@ -24,6 +24,9 @@ public class SequenceGenerationUtil {
         if (faceValueOfFirstCard == 1) {
             faceValueOfFirstCard = 14;
         }
+        else if (faceValueOfFirstCard == 0) {
+            faceValueOfFirstCard = 13;
+        }
         Card firstCard = new Card(cardToRetain.getSuit(), faceValueOfFirstCard);
         return generateSequence(firstCard, length);
     }

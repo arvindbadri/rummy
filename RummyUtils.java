@@ -74,6 +74,9 @@ public class RummyUtils {
         return new ArrayList<>(cardSet1);
     }
 
+    /*
+    DOES NOT WORK WELL WITH DUPLICATES. REMOVE DUPLICATES BEFORE PROCEEDING.
+     */
     public static List<Card> cardsToSwapToMakeSequence(List<Card> cards) {
         List<Card> minCardsToSwap = new ArrayList<>(cards);
         for (int i = 0; i < cards.size(); i++) {
@@ -83,6 +86,21 @@ public class RummyUtils {
                 minCardsToSwap = sequence;
             }
         }
+        return minCardsToSwap;
+    }
+
+    /*
+    DOES NOT WORK WELL WITH DUPLICATES. REMOVE DUPLICATES BEFORE PROCEEDING.
+     */
+    public static List<Card> cardsToSwapToMakeSet(List<Card> cards) {
+        List<Card> minCardsToSwap = new ArrayList<>(cards);
+            for (int i = 0; i < cards.size(); i++) {
+                List<Card> sequence = SetGenerationUtil.generateSetOfFour(cards.get(i));
+                sequence = cardsToSwap(cards, sequence);
+                if (sequence.size() < minCardsToSwap.size()) {
+                    minCardsToSwap = sequence;
+                }
+            }
         return minCardsToSwap;
     }
 }
