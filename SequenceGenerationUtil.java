@@ -26,22 +26,11 @@ public class SequenceGenerationUtil {
     }
 
     private static Boolean isWrappedSequence(List<Card> cards) {
-        return isFirstCardJackOrBigger(cards) &&
-                isFirstCardNotAce(cards) &&
-                isLastCardTwoOrHigher(cards);
+        RummyUtils.sort(cards);
+        return cards.get(0).getFaceValue() >= cards.get(cards.size() - 1).getFaceValue();
     }
 
-    private static Boolean isFirstCardJackOrBigger(List<Card> cards) {
-        return (cards.get(0).getFaceValue() >= 11);
-    }
 
-    private static Boolean isFirstCardNotAce(List<Card> cards) {
-        return (cards.get(0).getFaceValue() != 14);
-    }
-
-    private static Boolean isLastCardTwoOrHigher(List<Card> cards) {
-        return (cards.get(cards.size() - 1).getFaceValue() >= 2);
-    }
 
     public static List<Card> generateSequenceRetainingCard(List<Card> cards, int indexToRetain) {
         Card cardToRetain = cards.get(indexToRetain);

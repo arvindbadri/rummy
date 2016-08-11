@@ -4,19 +4,21 @@ import java.util.*;
 public class TestMain {
     public static void main(String[] args) {
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card(Card.Suit.SPADES, Card.Face.SIX));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Face.FOUR));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Face.FIVE));
-        cards.add(new Card(Card.Suit.SPADES, Card.Face.EIGHT));
-        cards.add(new Card(Card.Suit.SPADES, Card.Face.FIVE));
-        cards.add(new Card(Card.Suit.CLUBS, Card.Face.THREE));
-        cards.add(new Card(Card.Suit.SPADES, Card.Face.SEVEN));
+    //    cards.add(new Card(Card.Suit.SPADES, Card.Face.TWO));
+    //    cards.add(new Card(Card.Suit.SPADES, Card.Face.THREE));
+    //    cards.add(new Card(Card.Suit.SPADES, Card.Face.SIX));
+    //    cards.add(new Card(Card.Suit.SPADES, Card.Face.SEVEN));
+        cards.add(new Card(Card.Suit.SPADES, Card.Face.JACK));
+        cards.add(new Card(Card.Suit.SPADES, Card.Face.QUEEN));
+        cards.add(new Card(Card.Suit.SPADES, Card.Face.KING));
+
+        System.out.println(RummyUtils.cardsToSwapToMakeSequence(cards));
 
         
         RummyUtils.sort(cards);     
-        System.out.println(SwapsRequiredEvaluator.numberofSwaps(cards).size() + " Cards need to be replaced");
-        for(Card c: SwapsRequiredEvaluator.numberofSwaps(cards)){
-        	System.out.println(c.toString());
+    //    System.out.println(SwapsRequiredEvaluator.numberofSwaps(cards).size() + " Cards need to be replaced");
+    //    for(Card c: SwapsRequiredEvaluator.numberofSwaps(cards)){
+    //    	System.out.println(c.toString());
         	
 //        	List<Card> cards = new ArrayList<>();
 //            cards.add(new Card(Card.Suit.SPADES, Card.Face.SIX));
@@ -46,7 +48,7 @@ public class TestMain {
 //            cards4.add(new Card(Card.Suit.DIAMONDS, Card.Face.ACE));
 //            cards4.add(new Card(Card.Suit.HEARTS, Card.Face.ACE));
 //            System.out.println(RummyUtils.cardsToSwapToMakeSet(cards4));
-        }
+//        }
 
-}
+    }
 }
