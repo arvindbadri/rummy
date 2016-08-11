@@ -71,6 +71,7 @@ public class RummyUtils {
         Set<Card> cardSet1 = new HashSet<>(cards1);
         Set<Card> cardSet2 = new HashSet<>(cards2);
         cardSet1.removeAll(cardSet2);
+        cardSet1.remove(new Card(Card.Suit.WILDCARD, Card.Face.WILDCARD));
         return new ArrayList<>(cardSet1);
     }
 
