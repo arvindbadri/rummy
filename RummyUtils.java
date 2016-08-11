@@ -38,10 +38,7 @@ public class RummyUtils {
             Card.Suit suitToLookFor = cards.get(0).getSuit();
             for (Card card : cards) {
                 if (!(card.isJoker())) {
-                    System.out.println("Required: " + faceValueToLookFor);
-                    System.out.println("Found: " + card.getFaceValue());
                     if (couldStartWithAce && (faceValueToLookFor == (n + 1)) && card.getFaceValue() == 14) {
-                        System.out.println("Entered");
                         isSequenceOfNCards = true;
                     }
                     else if (card.getFaceValue() != faceValueToLookFor) {
@@ -68,5 +65,24 @@ public class RummyUtils {
                 return o1.getFaceValue() - o2.getFaceValue();
             }
         });
+    }
+
+    public static List<Card> cardsToSwap(List<Card> cards1, List<Card> cards2) {
+        Set<Card> cardSet1 = new HashSet<>(cards1);
+        Set<Card> cardSet2 = new HashSet<>(cards2);
+        cardSet1.removeAll(cardSet2);
+        return new ArrayList<>(cardSet1);
+    }
+
+    public static List<Card> cardsToSwapToMakeSequence(List<Card> cards) {
+        List<Card> minCardsToSwap = new ArrayList<>(cards);
+        for (int i = 0; i < cards.size(); i++) {
+            List<Card> sequence = SequenceGenerationUtil.generateSequenceRetainingCard(cards, i);
+            sequence = cardsToSwap(cards, sequence);
+            if (sequence.size() < minCardsToSwap.size()) {
+                minCardsToSwap = sequence;
+            }
+        }
+        return minCardsToSwap;
     }
 }

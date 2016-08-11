@@ -35,16 +35,43 @@ public class Card {
         return this.suit;
     }
 
-    public Boolean equals(Card c) {
-        return this.suit.equals(c.getSuit()) && this.getFaceValue() == c.getFaceValue();
+    @Override
+    public boolean equals(Object c) {
+        return this.hashCode() == c.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "" + this.face.toString() + " " + this.suit.toString();
     }
 
     public Boolean isJoker() {
         return this.suit.equals(Suit.WILDCARD) && this.face.equals(Face.WILDCARD);
     }
 
+    @Override
+    public int hashCode() {
+        int suitValue;
+        if (suit.equals(Suit.WILDCARD)){
+            suitValue = 0;
+        }
+        else if (suit.equals(Suit.SPADES)) {
+            suitValue = 1;
+        }
+        else if (suit.equals(Suit.HEARTS)) {
+            suitValue = 2;
+        }
+        else if (suit.equals(Suit.DIAMONDS)) {
+            suitValue = 3;
+        }
+        else {
+            suitValue = 4;
+        }
+        return suitValue * 14 + getFaceValue();
+    }
+
     public enum Face {
-        TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12), KING(13), ACE(14), WILDCARD(-1);
+        TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12), KING(13), ACE(14), WILDCARD(0);
 
         private int value;
         Face(int value) {
@@ -56,6 +83,6 @@ public class Card {
     }
 
     public enum Suit {
-        SPADES, HEARTS, DIAMONDS, CLUBS, WILDCARD;
+        SPADES, HEARTS, DIAMONDS, CLUBS, WILDCARD
     }
 }
