@@ -28,9 +28,29 @@ public class RummyUtils {
 
     public static Boolean isSequenceOfNCards(List<Card> cards, int n) {
         Boolean isSequenceOfNCards = true;
+        Boolean couldStartWithAce = false;
         if (cards.size() == n) {
             sort(cards);
-            //TODO: write logic here.
+            if (cards.get(cards.size() - 1).getFaceValue() == 14) {
+                couldStartWithAce = true;
+            }
+            int faceValueToLookFor = cards.get(0).getFaceValue();
+            Card.Suit suitToLookFor = cards.get(0).getSuit();
+            for (Card card : cards) {
+                if (!(card.isJoker())) {
+                    if (card.getFaceValue() != faceValueToLookFor) {
+                        isSequenceOfNCards = false;
+                        couldStartWithAce = false;
+                    }
+                    if (couldStartWithAce && faceValueToLookFor == 6 && card.getFaceValue() == 14) {
+                        isSequenceOfNCards = true;
+                    }
+                    faceValueToLookFor ++;
+                    if (card.getSuit() != suitToLookFor) {
+                        isSequenceOfNCards = false;
+                    }
+                }
+            }
         }
         else {
             isSequenceOfNCards = false;
