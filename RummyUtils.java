@@ -18,6 +18,15 @@ public class RummyUtils {
             }
         });
     }
+    
+    public static void sortBySuit(List<Card> cards) {
+        Collections.sort(cards, new Comparator<Card>() {
+            @Override
+            public int compare(Card o1, Card o2) {
+                return o1.getSuit().ordinal() - o2.getSuit().ordinal();
+            }
+        });
+    }
 
     public static List<Card> cardsToSwap(List<Card> cards1, List<Card> cards2) {
         Set<Card> cardSet1 = new HashSet<>(cards1);
