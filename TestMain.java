@@ -15,7 +15,7 @@ public class TestMain {
         cards2.add(new Card(Card.Suit.SPADES, Card.Face.SEVEN));
         cards2.add(new Card(Card.Suit.SPADES, Card.Face.FOUR));
         cards = SequenceGenerationUtil.generateSequenceRetainingCard(cards, 2);
-        System.out.println(RummyUtils.isSequenceOfNCards(cards, 4));
+        System.out.println(RummyUtils.isSequenceOfNCards(cards));
         System.out.println(RummyUtils.cardsToSwap(cards, cards2));
         List<Card> cards3 = new ArrayList<>();
         cards3.add(new Card(Card.Suit.SPADES, Card.Face.ACE));
