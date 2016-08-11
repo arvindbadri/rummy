@@ -38,12 +38,15 @@ public class RummyUtils {
             Card.Suit suitToLookFor = cards.get(0).getSuit();
             for (Card card : cards) {
                 if (!(card.isJoker())) {
-                    if (card.getFaceValue() != faceValueToLookFor) {
+                    System.out.println("Required: " + faceValueToLookFor);
+                    System.out.println("Found: " + card.getFaceValue());
+                    if (couldStartWithAce && (faceValueToLookFor == (n + 1)) && card.getFaceValue() == 14) {
+                        System.out.println("Entered");
+                        isSequenceOfNCards = true;
+                    }
+                    else if (card.getFaceValue() != faceValueToLookFor) {
                         isSequenceOfNCards = false;
                         couldStartWithAce = false;
-                    }
-                    if (couldStartWithAce && faceValueToLookFor == 6 && card.getFaceValue() == 14) {
-                        isSequenceOfNCards = true;
                     }
                     faceValueToLookFor ++;
                     if (card.getSuit() != suitToLookFor) {
